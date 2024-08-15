@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Causaleffect Documentation
+`Causaleffectpy` Documentation
 ==========================
 
 This documentation provides an overview of `causaleffectpy`, which is derived from Santu Tikka's `causaleffect` R package. This documentation will focus on `simplify` and related functions in order to integrate them into the open source `y0` (Why Not?) Python package. For further information, see Tikka & Karvanen (2017) "Simplifying Probabilistic Expressions in Causal Inference".

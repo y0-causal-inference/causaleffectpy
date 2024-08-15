@@ -2,7 +2,10 @@ CausalEffect Functions
 =======================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 4
    :titlesonly:
 
    simplify
+   join
+   insert
+   powerset

@@ -21,23 +21,23 @@ G : networkx.DiGraph object
 G_obs : networkx.DiGraph object
     A DAG that only includes directed edges, representing observed variables, created using `networkx.DiGraph`.
 
-Details
--------
-This function depends on several other functions and classes, including: :func:`parents`, :func:`ancestors`, :func:`parse_causaleffect`, :func:`is_d_separated`, and :class:`probability`.
 
 Returns
 -------
 list
     Section in-progress 
 
-References
-----------
-Tikka, S., & Karvanen, J. (2017). Simplifying probabilistic expressions in causal inference. Journal of Machine Learning Research, 18(36), 1-30.
+Dependencies
+-------
+This function depends on several other functions and classes, including: :func:`parents`, :func:`ancestors`, :func:`parse_causaleffect`, :func:`is_d_separated`, and :class:`probability`.
 
 
 See Also
 --------
-:func:`identify`, :func:`parse_causaleffect`, :func:`get.expression`, :class:`probability`
+- :func:`identify`
+- :func:`parse_causaleffect`
+- :func:`get.expression`
+- :class:`probability`
 
 Examples
 --------
@@ -52,6 +52,10 @@ models, manip, math, utilities
 Concepts
 --------
 probabilistic expressions, graph theory, causal inference
+
+References
+----------
+Tikka, S., & Karvanen, J. (2017). Simplifying probabilistic expressions in causal inference. Journal of Machine Learning Research, 18(36), 1-30.
 
 Author
 ------
