@@ -27,14 +27,14 @@ M : list of str
     Missing variables (variables not contained within the expression).
 O : list of str
     Observed variables (variables contained within the expression).
-G_unobs : y0.Graph
-    Separate graph that turns bidirected edges into explicit nodes for unobserved confounders.
-G : y0.Graph
-    Main graph `G`. Includes bidirected edges.
-G_obs : y0.Graph
-    Separate graph that does not contain bidirected edges (only contains the directed edges with observed nodes).
-topo : list of str
-    The topological ordering of the vertices in graph `G`.
+G_unobs : `networkx.DiGraph` object
+    A separate directed acyclic graph (DAG) that includes explicit nodes for unobserved confounders, created using :func:`networkx.DiGraph`.
+G : `networkx.DiGraph` object
+    Main graph G, which includes bidirected edges, and is created with :func:`networkx.DiGraph`.
+G_obs : `networkx.DiGraph` object
+    A DAG that only includes directed edges, representing observed variables, created using :func:`networkx.DiGraph`.
+topo : list of nodes
+    The topological ordering of the vertices in graph `G`, which can be obtained using :func:`networkx.topological_sort`.
 
 Returns
 -------
@@ -43,7 +43,7 @@ list of str
 
 Dependencies
 -------
-This function depends on several functions from the causaleffect package, including: :func:`powerset`, :func:`is_d_separated`, and :func:`insert`.
+This function depends on several other functions and classes, including: :func:`powerset`, :func:`is_d_separated`, and :func:`insert`.
 
 See Also
 --------
