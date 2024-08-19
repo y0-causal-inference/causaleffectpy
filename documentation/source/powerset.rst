@@ -19,15 +19,13 @@ list of lists
 
 Examples
 --------
+Section in-progress
 .. code-block:: python
 
-    set_1 = ['a', 'b', 'c']
-    powerset_result = powerset(set_1)
-    # Output: [[], ['a'], ['b'], ['c'], ['a', 'b'], ['a', 'c'], ['b', 'c'], ['a', 'b', 'c']]
 
 See Also
 --------
-- `join`: for using powerset with conditional independence in probabilistic graphical models.
+- `join`: for using :func:`powerset` with conditional independence in probabilistic graphical models.
 
 Keywords
 --------
