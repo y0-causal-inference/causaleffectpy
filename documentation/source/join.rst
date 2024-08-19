@@ -2,30 +2,41 @@ Join
 ====
 
 The `join` function determines whether the terms of the atomic expression actually represent a joint distribution.
-It attempts to combine two terms: the joint term `P(J|D)` obtained from `simplify()` and the
-term `P(V|C) := P(Vk|Ck)` of the current iteration step. The goal is to
-determine if these terms can be combined based on the d-separation criteria in the graph `G`.
+It attempts to combine two terms: the joint term `P(J|D)` obtained from `simplify()` and the term `P(V|C) := P(Vk|Ck)` 
+of the current iteration step. `join` iterates over potential subsets to find a valid set where the variable `new_variable` 
+can be added to the joint distribution `joint_dist_variables`. During this process, `join` checks conditional 
+independencies using both `joint_conditioning_set` and `prob_conditioning_set`. The goal is to determine if these 
+terms can be combined based on the d-separation criteria in the graph `G`.
 
 Parameters
 ----------
-J : list of str
-    Joint set `P(J|D)`; already processed and included in the joint distribution
+joint_dist_variables : list of str
+    Equivalent to `J` in Tikka's `causaleffect` R package.
+    Existing joint set `P(J|D)`; already processed and included in the joint distribution
     from previous `simplify` iteration. Initially, may be empty for the starting point of
-    the joint distribution. `vari` is added to expand it if d-separation conditions are met.
-D : list of str
-    Term `P(V|C) := P(Vk|Ck)`; set of variables that condition the joint distribution.
-    `join` checks and updates `D` as necessary to maintain the validity of the joint distribution
-    when combined with `vari`.
-vari : str
-    Current variable being considered for inclusion in the joint distribution.
-cond : list of str
-    Set of variables that condition the current variable `vari`. `join` uses `cond`
-    to evaluate conditional independence and determine if `vari` can be added to `J`.
-S : list of str
+    the joint distribution. `new_variable` is added to expand it using `insert` if d-separation conditions are met.
+joint_conditioning_set : list of str
+     Equivalent to `D` in Tikka's `causaleffect` R package. Represented by the term `P(V|C) := P(Vk|Ck)` in Tikka & Karvanen (2017). 
+     Conditioning set for the already existing joint distribution `P(J|D)`, used to condition the joint distribution over the set `joint_dist_variables`. 
+     As `join` iterates, `conditioning_set` is modified to determine how the joint distribution `P(J|D)` can be updated to 
+     include the new variable `new_variable`, while preserving the required conditional independencies.
+new_variable : str
+    Equivalent to `vari` in Tikka's `causaleffect` R package.
+    New variable being considered for inclusion in the joint distribution (the new variable that we may want to add to the joint distribution `joint_dist_variables`).
+    `join` attempts to update the joint distribution `joint_dist_variables` by adding `new_variable` to define a new probabilistic term if the term still 
+    satisfies the required conditional independencies. `insert` adds `new_variable` to `joint_dist_variables`.
+prob_conditioning_set : list of str
+    Equivalent to `cond` in Tikka's `causaleffect` R package.
+    Conditioning set for the current probabilistic term P(vari|cond); the set of variables that condition the current variable `new_variable`. 
+    `join` uses `prob_conditioning_set` to evaluate conditional independence and determine if `new_variable` can be added to `joint_dist_variables`.
+summation_variables : list of str
+    Equivalent to `S` in Tikka's `causaleffect` R package.
     Not used directly in `join`. Current summation variable.
-M : list of str
+inserted_variables : list of str
+    Equivalent to `M` in Tikka's `causaleffect` R package.
     Missing variables (variables not contained within the expression).
-O : list of str
+observed_variables : list of str
+    Equivalent to `O` in Tikka's `causaleffect` R package.
     Observed variables (variables contained within the expression).
 G_unobs : `networkx.DiGraph` object
     A separate directed acyclic graph (DAG) that includes explicit nodes for unobserved confounders, created using :func:`networkx.DiGraph`.
@@ -38,12 +49,14 @@ topo : list of nodes
 
 Returns
 -------
-list of str
-    The joint result, or the original result if none of the conditions for joining were met.
+Section in-progress
 
 Dependencies
 -------
-This function depends on several other functions and classes, including: :func:`powerset`, :func:`is_d_separated`, and :func:`insert`.
+This function depends on several other functions and classes, including: 
+- :func:`powerset`
+- :func:`is_d_separated`
+- :func:`insert`. `insert` adds `new_variable` to `joint_dist_variables`.
 
 See Also
 --------
@@ -60,13 +73,16 @@ Section in-progress
 Keywords
 --------
 models, manip, math, utilities
+
 Concepts
 --------
 probabilistic expressions, graph theory, causal inference
 
 References
 ----------
+Tikka, S. (2022). `causaleffect`: Deriving Expressions of Joint Interventional Distributions and Transport Formulas in Causal Models (1.3.15) [R package]. https://github.com/santikka/causaleffect/.
 Tikka, S., & Karvanen, J. (2017). Simplifying probabilistic expressions in causal inference. Journal of Machine Learning Research, 18(36), 1-30.
+Tikka, S., & Karvanen, J. (2018). Identifying causal effects with the R package causaleffect. arXiv preprint arXiv:1806.07161.
 
 Author
 ------
