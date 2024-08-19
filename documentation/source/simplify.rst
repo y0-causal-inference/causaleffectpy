@@ -4,14 +4,15 @@ Simplify
 This function algebraically simplifies probabilistic expressions given by the ID algorithm from :func:`identify`. It always attempts to perform maximal simplification, meaning that as many variables of the set are 
 removed as possible. If the simplification in terms of the entire set cannot be completed, the intermediate result with as many variables simplified as possible should be returned.
 
-Run :func:`identify` with the graph information first, then use the output of :func:`identify` as the `P` in :func:`parse_causaleffect`. Use the output from :func:`parse_causaleffect` as the `P` in :func:`simplify`.
+Run :func:`identify` with the graph information first, then use the output of :func:`identify` as the `prob_expression` in :func:`parse_causaleffect`. Use the output from :func:`parse_causaleffect` as the `prob_expression` in :func:`simplify`.
 
 For further information, see Tikka & Karvanen (2017) "Simplifying Probabilistic Expressions in Causal Inference" Algorithm 1.
 
 
 Parameters
 ----------
-P : `sympy` expression or `y0` `Probability` object
+prob_expression : `sympy` expression or `y0` `Probability` object
+    Equivalent to `P` in Tikka's `causaleffect` R package.
     The probabilistic expression that will be simplified, typically created using symbolic expressions in `sympy` or using `y0`'s Probability class.
 topo : list of nodes
     The topological ordering of the vertices in graph `G`, which can be obtained using :func:`networkx.topological_sort`.
