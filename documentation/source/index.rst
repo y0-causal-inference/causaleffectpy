@@ -18,6 +18,7 @@ References
 ===============
 
 Hoyt, C.T., Zucker, J., & Parent, M-A. (2021). Y0 “Why Not?” for Causal Inference in Python (1.0) [Python package]. 10.5281/zenodo.4950768. https://github.com/y0-causal-inference/y0.
+Tikka, S. (2022). causaleffect: Deriving Expressions of Joint Interventional Distributions and Transport Formulas in Causal Models (1.3.15) [R package]. https://github.com/santikka/causaleffect/.
 Tikka, S., & Karvanen, J. (2017). Simplifying probabilistic expressions in causal inference. Journal of Machine Learning Research, 18(36), 1-30.
 
 
