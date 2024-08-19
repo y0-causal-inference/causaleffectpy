@@ -2,7 +2,7 @@ Join
 ====
 
 The `join` function determines whether the terms of the atomic expression actually represent a joint distribution.
-It attempts to combine two terms: the joint term `P(J|D)` obtained from `simplify()` and the term `P(V|C) := P(Vk|Ck)` 
+It attempts to combine two terms: the joint term :math:`P(J|D)` obtained from `simplify()` and the term :math:`P(V|C) := P(V_k|C_k)` 
 of the current iteration step. `join` iterates over potential subsets to find a valid set where the variable `new_variable` 
 can be added to the joint distribution `joint_dist_variables`. During this process, `join` checks conditional 
 independencies using both `joint_conditioning_set` and `prob_conditioning_set`. The goal is to determine if these 
@@ -12,13 +12,13 @@ Parameters
 ----------
 joint_dist_variables : list of str
     Equivalent to `J` in Tikka's `causaleffect` R package.
-    Existing joint set `P(J|D)`; already processed and included in the joint distribution
+    Existing joint set :math:`P(J|D)`; already processed and included in the joint distribution
     from previous `simplify` iteration. Initially, may be empty for the starting point of
     the joint distribution. `new_variable` is added to expand it using `insert` if d-separation conditions are met.
 joint_conditioning_set : list of str
-     Equivalent to `D` in Tikka's `causaleffect` R package. Represented by the term `P(V|C) := P(Vk|Ck)` in Tikka & Karvanen (2017). 
-     Conditioning set for the already existing joint distribution `P(J|D)`, used to condition the joint distribution over the set `joint_dist_variables`. 
-     As `join` iterates, `conditioning_set` is modified to determine how the joint distribution `P(J|D)` can be updated to 
+     Equivalent to `D` in Tikka's `causaleffect` R package. Represented by the term :math:`P(V|C) := P(V_k|C_k)` in Tikka & Karvanen (2017). 
+     Conditioning set for the already existing joint distribution :math:`P(J|D)`, used to condition the joint distribution over the set `joint_dist_variables`. 
+     As `join` iterates, `conditioning_set` is modified to determine how the joint distribution :math:`P(J|D)` can be updated to 
      include the new variable `new_variable`, while preserving the required conditional independencies.
 new_variable : str
     Equivalent to `vari` in Tikka's `causaleffect` R package.
